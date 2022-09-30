@@ -1,0 +1,17 @@
+jp:
+  welcome: Chào mừng jp!
+  bye: Tạm biệt jp!
+  some_error: Một điều gì đó đã xảy ra jp...
+  users:
+    index:
+      user: "Người dùngjp"
+      name: "Tên jp"
+      email: "Địa chỉ mailjp"
+      show: "Xem chi tiết jp"
+      edit: "Chinh sửajp"
+      destroy: "Xóajp"
+      new_user: "Thêm người dùngjp"
+      date: "Ngày tạojp"
+  static_pages:
+    home:
+      name: "DuongJP"
