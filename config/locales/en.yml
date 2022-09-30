@@ -31,3 +31,19 @@
 
 en:
   hello: "Hello world"
+  welcome: Welcome!
+  bye: Good bys!
+  some_error: One thing happend!
+  users:
+    index:
+      user: "Users"
+      name: "Name"
+      email: "Email"
+      show: "Show"
+      edit: "Edit"
+      destroy: "Destroy"
+      new_user: "New User"
+      date: "Create date" 
+  static_pages:
+    home:
+      name: "DuongEN"
