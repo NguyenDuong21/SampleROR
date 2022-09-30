@@ -9,7 +9,7 @@ gem "rails-i18n"
 gem "bootstrap-sass", "3.4.1"
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
-gem 'bcrypt', '3.1.13'
+gem "bcrypt", "3.1.13"
 # Use mysql as the database for Active Record
 gem "mysql2", "~> 0.5"
 
