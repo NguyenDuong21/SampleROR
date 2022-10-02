@@ -40,6 +40,16 @@ class User < ApplicationRecord
     # Sends activation email.
     def send_activation_email
         UserMailer.account_activation(self).deliver_now
+    private
+
+    def downcase_email
+        self.email = email.downcase
+    end
+    
+    def create_activation_digest
+        # Create the token and digest.
+        self.activation_token = User.new_token
+        self.activation_digest = User.digest(activation_token)
     end
         
 

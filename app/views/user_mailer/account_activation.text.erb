@@ -1,0 +1,5 @@
+Hi <%= @user.name %>,
+
+<%= @greeting %>, find me in app/views/user_mailer/account_activation.text.erb
+<%= @user.activation_token%>
+<%= edit_account_activation_url("vi",@user.activation_token, email: @user.email) %>
