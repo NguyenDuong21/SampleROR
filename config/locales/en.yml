@@ -37,6 +37,8 @@ en:
   users:
     show:
       mess_warning: "Không tìm thấy EN"
+    create:
+      check_maill: "Kiểm tra email để  xác thực tài khoản EN"
     index:
       user: "Users"
       name: "Name"

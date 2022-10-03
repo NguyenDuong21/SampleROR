@@ -29,12 +29,9 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
-<<<<<<< HEAD
-/config/database.yml
 
 config/settings.local.yml
 config/settings/*.local.yml
 config/environments/*.local.yml
-=======
 /config/database.yml
->>>>>>> 78f4b45 (Chuong7-SignUp)
+/node_modules
