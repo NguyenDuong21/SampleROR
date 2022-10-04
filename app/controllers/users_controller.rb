@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     @user = User.find_by(id: params[:id])
     unless @user
       flash[:warning] = t(".mess_warning")
-      redirect_to root_url
+      return redirect_to root_url
     end
   end
 

@@ -12,7 +12,7 @@ module TrainingApp
 
     Bundler.require(*Rails.groups)
     Config::Integrations::Rails::Railtie.preload
-    config.time_zone = Settings.time_zone
+    # config.time_zone = Settings.time_zone
     config.load_defaults 7.0
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
     config.i18n.available_locales = [:en, :vi, :jp]
