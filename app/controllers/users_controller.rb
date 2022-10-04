@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find_by(id: params[:id])
+    @microposts = @user.microposts.paginate(page: params[:page])
     unless @user
       flash[:warning] = t(".mess_warning")
       return redirect_to root_url
@@ -26,7 +27,7 @@ class UsersController < ApplicationController
       flash[:info] = t(".check_maill")
       redirect_to root_url
     else
-      render "new"
+      render :new
     end
   end
 
@@ -40,7 +41,7 @@ class UsersController < ApplicationController
       flash[:success] = "Profile updated"
       redirect_to @user
     else
-      render 'edit'
+      render :edit
     end
   end
 
@@ -64,13 +65,6 @@ class UsersController < ApplicationController
 
   # Confirms a logged-in user.
 
-  def logged_in_user
-    unless logged_in?
-      store_location
-      flash[:danger] = "Please log in."
-      redirect_to login_url
-    end
-  end
   # Confirms the correct user.
   def correct_user
     @user = User.find(params[:id])
