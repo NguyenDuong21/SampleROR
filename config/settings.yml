@@ -1,4 +1,5 @@
 max_length_name: 50
 max_length_email: 255
+min_length_pass: 6
 client:
   host: "localhost:3000"
