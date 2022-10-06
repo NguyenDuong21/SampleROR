@@ -1,5 +1,6 @@
 max_length_name: 50
 max_length_email: 255
 min_length_pass: 6
+max_length_content_posts: 140
 client:
   host: "localhost:3000"

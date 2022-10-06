@@ -1,14 +1,16 @@
 class User < ApplicationRecord
-    attr_accessor :remember_token, :activation_token, :reset_token
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-
+    
+    attr_accessor :remember_token, :activation_token, :reset_token
+    
     before_save :downcase_email
     before_create :create_activation_digest
-    VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+    
     validates :name, presence: true, length: { maximum: Settings.max_length_name}
     validates :email, presence: true, length: { maximum: Settings.max_length_email }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
     validates :password, presence: true, length: { minimum: Settings.min_length_pass }, allow_nil: true
-
+    
+    has_many :microposts, dependent: :destroy
     has_secure_password
 
     # Returns the hash digest of the given string.
@@ -63,6 +65,13 @@ class User < ApplicationRecord
     # Returns true if a password reset has expired.
     def password_reset_expired?
         reset_sent_at < 2.hours.ago
+    end
+
+    # Defines a proto-feed.
+    # See "Following users" for the full implementation.
+    def feed
+      # Micropost.where("user_id = ?", id)
+      microposts
     end
 
     private
