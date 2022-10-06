@@ -10,21 +10,22 @@ class User < ApplicationRecord
     has_many :following, through: :active_relationships, source: :followed
     has_many :followers, through: :passive_relationships, source: :follower
 
-    attr_accessor :remember_token, :activation_token, :reset_token
     VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
-
+    
+    attr_accessor :remember_token, :activation_token, :reset_token
+    
     before_save :downcase_email
     before_create :create_activation_digest
     
-    validates :name, presence: true, length: { maximum: 50 }
-    validates :email, presence: true, length: { maximum: 255 }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
-    validates :password, presence: true, length: { minimum: 6 }, allow_nil: true
-
+    validates :name, presence: true, length: { maximum: Settings.max_length_name}
+    validates :email, presence: true, length: { maximum: Settings.max_length_email }, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
+    validates :password, presence: true, length: { minimum: Settings.min_length_pass }, allow_nil: true
+    
+    has_many :microposts, dependent: :destroy
     has_secure_password
 
     # Returns the hash digest of the given string.
     class << self
-    
         def digest(string)
             cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
             BCrypt::Engine.cost

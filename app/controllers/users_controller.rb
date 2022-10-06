@@ -1,15 +1,16 @@
 class UsersController < ApplicationController
-  before_action :logged_in_user, only: [:index, :edit, :update, :destroy, :following, :followers]
+  before_action :logged_in_user, only: [:index, :edit, :update, :destroy]
+  before_action :load_user, only: [:show, :edit, :update]
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
+
+  scope :active_user, -> { where(activated: true) } 
 
   def index
     @users = User.paginate(page: params[:page])
   end
   
   def show
-    @user = User.find_by(id: params[:id])
-    @microposts = @user.microposts.paginate(page: params[:page])
     unless @user
       flash[:warning] = t(".mess_warning")
       return redirect_to root_url
@@ -32,11 +33,10 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    
   end
 
   def update
-    @user = User.find(params[:id])
     if @user.update(user_params)
       flash[:success] = "Profile updated"
       redirect_to @user
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).destroy
+    @user.destroy
     flash[:success] = "User deleted"
     redirect_to users_url
   end
@@ -67,20 +67,18 @@ class UsersController < ApplicationController
 
   private
   
-  def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+  def load_user
+    @user = User.find_by(id: params[:id])
   end
 
-  def correct_user
-    @user = User.find(params[:id])
-    redirect_to(root_url) unless @user == current_user
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
   # Confirms a logged-in user.
 
   # Confirms the correct user.
   def correct_user
-    @user = User.find(params[:id])
     redirect_to(root_url) unless current_user?(@user)
   end
 
