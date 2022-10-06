@@ -35,6 +35,8 @@ en:
   bye: Good bys!
   some_error: One thing happend!
   users:
+    show:
+      mess_warning: "Không tìm thấy EN"
     index:
       user: "Users"
       name: "Name"

@@ -3,6 +3,8 @@ jp:
   bye: Tạm biệt jp!
   some_error: Một điều gì đó đã xảy ra jp...
   users:
+    show:
+      mess_warning: "Không tìm thấy JP"
     index:
       user: "Người dùngjp"
       name: "Tên jp"
