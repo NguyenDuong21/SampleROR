@@ -2,7 +2,6 @@ class Micropost < ApplicationRecord
 
   belongs_to :user
   has_one_attached :image
-  default_scope -> { order(created_at: :desc) }
   validates :user_id, presence: true
   validates :content, presence: true, length: { maximum:  Settings.max_length_content_posts }
   validates :image, content_type: { in: %w[image/jpeg image/gif image/png],
@@ -13,8 +12,5 @@ class Micropost < ApplicationRecord
   def display_image
     image.variant(resize_to_limit: [500, 500])
   end
-
-
   
-
 end
