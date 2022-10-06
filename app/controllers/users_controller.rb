@@ -3,8 +3,10 @@ class UsersController < ApplicationController
   before_action :correct_user, only: [:edit, :update]
   before_action :admin_user, only: :destroy
 
+  scope :active_user, -> { where(activated: true) } 
+
   def index
-    @users = User.where(activated: true).paginate(page: params[:page])
+    @users = User.active_user.paginate(page: params[:page])
   end
   
   def show
@@ -26,7 +28,7 @@ class UsersController < ApplicationController
       flash[:info] = t(".check_maill")
       redirect_to root_url
     else
-      render "new"
+      render :new
     end
   end
 
