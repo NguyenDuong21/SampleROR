@@ -5,6 +5,8 @@ vi:
   users:
     show:
       mess_warning: "Không tìm thấy"
+    create:
+      check_maill: "Kiểm tra email để  xác thực tài khoản"
     index:
       user: "Người dùng"
       name: "Tên"

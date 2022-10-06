@@ -5,6 +5,8 @@ jp:
   users:
     show:
       mess_warning: "Không tìm thấy JP"
+    create:
+      check_maill: "Kiểm tra email để  xác thực tài khoản JP"
     index:
       user: "Người dùngjp"
       name: "Tên jp"
